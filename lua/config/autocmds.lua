@@ -7,8 +7,15 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+vim.cmd("highlight! Normal guibg=none")
+vim.cmd("highlight! NormalNC guibg=none")
+vim.cmd("highlight! SignColumn guibg=none")
+vim.cmd("highlight! NormalFloat guibg=none")
+vim.cmd("highlight! FloatBorder guibg=none")
+
 vim.api.nvim_create_autocmd("TermEnter", {
   callback = function(ev)
     vim.keymap.set("t", "<c-l>", "<c-l>", { buffer = ev.buf, nowait = true })
+    vim.opt_local.winbar = nil -- no window bar for this buffer
   end,
 })
